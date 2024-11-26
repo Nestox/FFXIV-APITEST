@@ -1,18 +1,29 @@
 <template>
-    <div class="container-xl">
-        <div class="row d-flex p-2 ">
-            <div v-for="element in ItemsID" class="col-2 text-lg-center m-1 align-items-lg-center bg-color-FFblue rounded-3">
-                <p>{{ element.Name }}</p>
-                <img :src="'https://xivapi.com'+element.Icon" class="mb-2" alt="">
+    <div>
+        <router-link to="/">
+            <div class="bg-color-FFblue text-center rounded-3 ">
+                Return to main page
             </div>
-        </div>
+        </router-link>
     </div>
+    <itemFrameComponent
+    :ItemsID = "ItemsID"
+    :ItemsIcon = "ItemIcon"
+    :ItemsName = "ItemName"
+    :Itemslink = "ItemLink"
+    />
 </template>
 
 <script setup>
     import { ref, onBeforeMount } from 'vue';
 
     const ItemsID = ref([]);
+    const ItemIcon = ref([]);
+    const ItemName = ref([]);
+    const ItemLink = ref([]);
+    // Icon
+    // Name
+    // link
 
     onBeforeMount(async () => {
         const respond = await fetch("https://xivapi.com/item");
@@ -20,7 +31,10 @@
         
         data.Results.forEach(element => {
             if (element.Name != "") {
-                ItemsID.value.push(element)
+                ItemsID.value.push(element.ID)
+                ItemIcon.value.push(element.Icon)
+                ItemName.value.push(element.Name)
+                ItemLink.value.push(element.Url)
             }
         });
     })
