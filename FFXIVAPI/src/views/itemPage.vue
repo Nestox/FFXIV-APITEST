@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <div class="container-xl">
         <router-link to="/">
             <div class="bg-color-FFblue text-center rounded-3 ">
                 Return to main page
             </div>
         </router-link>
     </div>
+    
     <itemFrameComponent
     :ItemsID = "ItemsID"
     :ItemsIcon = "ItemIcon"
@@ -16,6 +17,7 @@
 
 <script setup>
     import { ref, onBeforeMount } from 'vue';
+    import itemFrameComponent from '@/components/itemFrameComponent.vue';
 
     const ItemsID = ref([]);
     const ItemIcon = ref([]);
