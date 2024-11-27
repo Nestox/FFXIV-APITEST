@@ -1,6 +1,8 @@
 import mainPage from '@/views/mainPage.vue'
 import itemPage from '@/views/itemPage.vue'
+import RecipesPage from '@/views/recipesPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import MapPage from '@/views/mapPage.vue'
 
 
 const router = createRouter({
@@ -15,6 +17,16 @@ const router = createRouter({
       path: '/items',
       name: 'item list',
       component: itemPage
+    },
+    {
+      path: '/maps',
+      name: 'maps list',
+      component: MapPage
+    },
+    {
+      path: '/recipes',
+      name: 'recipes list',
+      component: RecipesPage
     }
     // {
     //   path: '/about',

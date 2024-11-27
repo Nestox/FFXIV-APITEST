@@ -1,18 +1,23 @@
 <template>
-    <div class="container-xl">
-        <router-link to="/">
-            <div class="bg-color-FFblue text-center rounded-3 ">
-                Return to main page
+    <div class="container-xl ">
+        <div class="row">
+            <div class="col-2">
+                <router-link to="/" class="sticky-xl-top">
+                    <div class="bg-color-FFblue text-center rounded-1">
+                        Return to main page
+                    </div>
+                </router-link>
             </div>
-        </router-link>
+            <div class="col-10">
+                <itemFrameComponent
+                :ItemsID = "ItemsID"
+                :ItemsIcon = "ItemIcon"
+                :ItemsName = "ItemName"
+                :Itemslink = "ItemLink"
+                />
+            </div>
+        </div>
     </div>
-    
-    <itemFrameComponent
-    :ItemsID = "ItemsID"
-    :ItemsIcon = "ItemIcon"
-    :ItemsName = "ItemName"
-    :Itemslink = "ItemLink"
-    />
 </template>
 
 <script setup>
@@ -26,6 +31,11 @@
     // Icon
     // Name
     // link
+
+    async function getItemList(ind)
+    {
+
+    }
 
     onBeforeMount(async () => {
         const respond = await fetch("https://xivapi.com/item");
