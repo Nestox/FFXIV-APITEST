@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-
+            <MapCompTest></MapCompTest>
             <div class="col-sm-12 mb-sm-3 col-md-2 col-lg-2 col-xl-2">
                 <router-link to="/items" class="router-items ">
                     <div class="bg-color-FFblue text-center rounded-1 ">
@@ -25,7 +25,6 @@
                     </div>
                 </router-link>
             </div>
-
             
         </div>
     </div>
@@ -33,6 +32,7 @@
 
 
 <script>
+import MapCompTest from '@/components/mapCompTest.vue';
 import { onBeforeMount } from 'vue';
 
     onBeforeMount(async () => {
