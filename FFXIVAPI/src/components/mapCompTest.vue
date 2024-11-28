@@ -3,7 +3,7 @@
         <div class="map">
             <img :src="'https://xivapi.com' + mapUrl" alt="" class="img-fluid overflow-auto">
         </div>
-        <p>Map should be above this</p>
+        <!-- <p>Map should be above this</p> -->
     </div>
 </template>
 

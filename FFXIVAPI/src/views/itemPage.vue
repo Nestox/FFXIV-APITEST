@@ -1,14 +1,15 @@
 <template>
     <div class="container-xl ">
         <div class="row">
-            <div class="col-1">
+            <div class="d-none d-lg-block col-lg-1">
+                <!-- TODO: Add navbar for navigation and filters -->
                 <router-link to="/" class="sticky-xl-top">
                     <div class="bg-color-FFblue text-center rounded-1">
                         Return
                     </div>
                 </router-link>
             </div>
-            <div class="col-10">
+            <div class="col-12 col-lg-10">
                 <itemFrameComponent
                 :ItemsID = "ItemsID"
                 :ItemsIcon = "ItemIcon"
@@ -25,15 +26,16 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-1">
+            <div class=" col-lg-1">
                 
             </div>
         </div>
     </div>
+    <!-- TODO: Add a search functionalilty for the items -->
 </template>
 
 <script setup>
-    import { ref, onBeforeMount } from 'vue';
+    import { ref, onBeforeMount, watch } from 'vue';
     import itemFrameComponent from '@/components/itemFrameComponent.vue';
 
     const ItemsID = ref([]);
@@ -45,12 +47,17 @@
     const prevPage = ref([]);
     const maxPage = ref([]);
 
-    const actualPage = ref(3);
+    const actualPage = ref(1);
 
-    onBeforeMount(async () => {
-        const respond = await fetch(`https://xivapi.com/item?page=${actualPage.value}`);
+    async function getInfo(params)
+    {
+        const respond = await fetch(`https://xivapi.com/item?page=${params}`);
         const data = await respond.json();
         
+        prevPage.value = []
+        nextPage.value = []
+        maxPage.value = []
+
         prevPage.value.push(data.Pagination.PagePrev);
         nextPage.value.push(data.Pagination.PageNext);
         maxPage.value.push(data.Pagination.PageTotal);
@@ -63,5 +70,21 @@
                 ItemLink.value.push(element.Url)
             }
         });
+    }
+
+    onBeforeMount(async () => {
+        getInfo(actualPage.value)
     })
+    watch(
+    () => actualPage.value,
+    async (newId, oldId) => {
+        ItemsID.value = []
+        ItemIcon.value = []
+        ItemName.value = []
+        ItemLink.value = []
+        console.log('El id cambió de', oldId, 'a', newId)
+        getInfo(actualPage.value);
+    },
+    { immediate: true }
+);
 </script>

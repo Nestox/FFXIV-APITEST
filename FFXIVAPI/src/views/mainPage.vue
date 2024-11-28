@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <MapCompTest></MapCompTest>
-            <div class="col-sm-12 mb-sm-3 col-md-2 col-lg-2 col-xl-2">
+            <div class="col-12 mb-3 col-md-2 col-lg-2 col-xl-2">
                 <router-link to="/items" class="router-items ">
                     <div class="bg-color-FFblue text-center rounded-1 ">
                         Item list
@@ -10,7 +10,7 @@
                 </router-link>
             </div>
 
-            <div class=" col-sm-12 mb-sm-3 col-md-2 col-lg-2 col-xl-2">
+            <div class=" col-12 mb-3 col-md-2 col-lg-2 col-xl-2">
                 <router-link to="/maps">
                     <div class="bg-color-FFblue text-center rounded-1 ">
                         Maps List
@@ -18,7 +18,7 @@
                 </router-link>
             </div>
 
-            <div class=" col-sm-12 mb-sm-3 col-md-2 col-lg-2 col-xl-2">
+            <div class=" col-12 mb-3 col-md-2 col-lg-2 col-xl-2">
                 <router-link to="/recipes">
                     <div class="bg-color-FFblue text-center rounded-1 ">
                         Recipes List

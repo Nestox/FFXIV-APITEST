@@ -9,6 +9,7 @@
                 </router-link>
             </div>
             <div class="col-9">
+                <!-- Here is the map component -->
                 <MapCompTest :mapUrl="'/m/f1t1/f1t1.00.jpg'" />
             </div>
             <div class="col-2">
