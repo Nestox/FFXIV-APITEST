@@ -11,9 +11,9 @@
 
 <script setup>
     const props = defineProps({
-        ItemsID: Number,
-        ItemsIcon: String,
-        ItemsName: String,
-        Itemslink: String
+        ItemsID: Array,
+        ItemsIcon: Array,
+        ItemsName: Array,
+        Itemslink: Array
     })
 </script>
