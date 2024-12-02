@@ -73,8 +73,10 @@
     }
 
     onBeforeMount(async () => {
-        getInfo(actualPage.value)
+        // getInfo(actualPage.value)
+        
     })
+
     watch(
     () => actualPage.value,
     async (newId, oldId) => {
