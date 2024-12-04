@@ -1,7 +1,7 @@
 <template>
-    <div class="container-xl ">
+    <div class="container ">
         <div class="row">
-            <div class="d-none d-lg-block col-lg-1">
+            <div class="col-lg-1">
                 <!-- TODO: Add navbar for navigation and filters -->
                 <router-link to="/" class="sticky-xl-top">
                     <div class="bg-color-FFblue text-center rounded-1">

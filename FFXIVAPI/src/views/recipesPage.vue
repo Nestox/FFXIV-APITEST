@@ -9,6 +9,9 @@
                 </router-link>
             </div>
             <div class="col-10">
+                <recipe-component
+                    
+                />
                 Here goes the component
             </div>
         </div>
@@ -16,5 +19,6 @@
 </template>
 
 <script setup>
+import RecipeComponent from '@/components/recipeComponent.vue';
 
 </script>

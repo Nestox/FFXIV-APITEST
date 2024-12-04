@@ -1,11 +1,44 @@
 @import "bootstrap.css";
-
+@import '@splidejs/vue-splide/css';
 
 .bg-color-FFblue{
   background-color: #334B80;
   color: white;
 }
 
+.expansions-item{
+  width: 100%;
+  height: 100%;
+
+  a{
+    width: 100%;
+    height: 100%;
+
+    .centerTest{
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+
+      .SplideText{
+        font-weight: bold;
+        font-size: 25px;
+        color: white;
+        text-decoration: none;
+        align-self: end;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.item-img{
+  height: 20%;
+  width: 20%;
+  align-self: center;
+}
 
 // @import 'bootstrap.css';
 
