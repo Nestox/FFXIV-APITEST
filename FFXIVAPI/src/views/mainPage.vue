@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12 col-md-10 col-lg-10 col-xl-8 mx-auto mb-2">
-            <Splide id="expansions-Splide" :options="{type: 'loop', width: '100%', height: '250px', perPage: 1}">
+            <Splide id="expansions-Splide" :options="{type: 'loop', width: '100%', height: '250px', perPage: 1, autoplay: true, interval: 10000,speed: 500}">
                 <SplideSlide class="expansions-item">
                     <a href="https://eu.finalfantasyxiv.com/lodestone">
                         <div class="centerTest" style="background-image: url('../../public/img/LodestoneBannr.png');">
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-12 mb-3 col-md-4">
                 <router-link to="/items" class="router-items ">
-                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column ">
+                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column pt-2">
                         <img src="../../public/img/gladiator.png" class="img-thumbnail item-img bg-black ">
                         Item list
                     </div>
@@ -45,7 +45,7 @@
 
             <div class=" col-12 mb-3 col-md-4">
                 <router-link to="/maps">
-                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column ">
+                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column pt-2">
                         <img src="../../public/img/PlaceName.png" class="img-thumbnail item-img bg-black ">
                         Maps List
                     </div>
@@ -54,13 +54,12 @@
 
             <div class=" col-12 mb-3 col-md-4">
                 <router-link to="/recipes">
-                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column ">
+                    <div class="bg-color-FFblue text-center rounded-1 d-flex flex-column pt-2">
                         <img src="../../public/img/blacksmith.png" class="img-thumbnail item-img bg-black ">
                         Recipes List
                     </div>
                 </router-link>
             </div>
-            
         </div>
     </div>
 </template>

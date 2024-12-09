@@ -1,5 +1,11 @@
 <template>
-    <div class="container ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <input type="input" name="" v-model="searchValue" class="mb-2">
+                <button type="button" id="searchButton" @click="startSearching = true">search</button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-1">
                 <!-- TODO: Add navbar for navigation and filters -->
@@ -11,7 +17,7 @@
             </div>
             <div class="col-12 col-lg-10">
                 <itemFrameComponent
-                :ItemsID = "ItemsID"
+                :ItemsID = "ItemID"
                 :ItemsIcon = "ItemIcon"
                 :ItemsName = "ItemName"
                 :Itemslink = "ItemLink"
@@ -35,19 +41,28 @@
 </template>
 
 <script setup>
-    import { ref, onBeforeMount, watch } from 'vue';
+    import { ref, watch } from 'vue';
     import itemFrameComponent from '@/components/itemFrameComponent.vue';
 
-    const ItemsID = ref([]);
+    const ItemID = ref([]);
+    const ItemIDPersistent = ref([])
     const ItemIcon = ref([]);
+    const ItemIconPersistent = ref([])
     const ItemName = ref([]);
+    const ItemNamePersistent = ref([])
     const ItemLink = ref([]);
+    const ItemLinkPersistent = ref([])
+
+    const searchValue = ref('')
 
     const nextPage = ref([]);
     const prevPage = ref([]);
     const maxPage = ref([]);
 
     const actualPage = ref(1);
+
+    let firstLoading = false;
+    let startSearching = ref(false);
 
     async function getInfo(params)
     {
@@ -64,7 +79,7 @@
 
         data.Results.forEach(element => {
             if (element.Name != "") {
-                ItemsID.value.push(element.ID)
+                ItemID.value.push(element.ID)
                 ItemIcon.value.push(element.Icon)
                 ItemName.value.push(element.Name)
                 ItemLink.value.push(element.Url)
@@ -72,20 +87,76 @@
         });
     }
 
-    onBeforeMount(async () => {
-        // getInfo(actualPage.value)
+    async function loadAllNames(params) {
+        const respond = await fetch(`https://xivapi.com/item?page=${params}`);
+        const data = await respond.json();
         
+        // console.log(data)
+        data.Results.forEach(element => {
+            if (element.Name != "") {
+            ItemIDPersistent.value.push(element.ID);
+            ItemNamePersistent.value.push(element.Name);
+            ItemIconPersistent.value.push(element.Icon);
+            ItemLinkPersistent.value.push(element.Url);
+            }
+        })
+        // console.log(ItemIDPersistent)
+        // console.log(ItemNamePersistent)
+    }
+
+    watch(
+    () => startSearching.value,
+    async()=>{
+        // console.log(startSearching.value)
+        // console.log(searchValue.value)
+        if (searchValue.value == '') {
+            await getInfo(1);
+        } else {
+            ItemID.value = []
+            ItemIcon.value = []
+            ItemName.value = []
+            ItemLink.value = []
+            startSearching.value = false;
+            // console.log(ItemIDPersistent.value.length)
+            for (let i = 0; i < ItemIDPersistent.value.length; i++) 
+            {
+                // console.log(ItemNamePersistent.value[i])
+                if (searchValue.value == ItemNamePersistent.value[i]) 
+                // if (searchValue.value.match(ItemNamePersistent.value[i])) 
+                {
+                    console.log("entra")
+                    console.log(i)
+                    console.log(ItemNamePersistent.value[i])
+                    
+                    ItemID.value.push(ItemIDPersistent.value[i])
+                    ItemIcon.value.push(ItemIconPersistent.value[i])
+                    ItemName.value.push(ItemNamePersistent.value[i])
+                    ItemLink.value.push(ItemLinkPersistent.value[i])
+                }
+            }
+        }
     })
+
+    const restraso = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
     watch(
     () => actualPage.value,
     async (newId, oldId) => {
-        ItemsID.value = []
+        ItemID.value = []
         ItemIcon.value = []
         ItemName.value = []
         ItemLink.value = []
-        console.log('El id cambió de', oldId, 'a', newId)
-        getInfo(actualPage.value);
+        await getInfo(actualPage.value);
+
+        if(firstLoading == false){
+            for (let i = 1; i < 5; i++) {
+                loadAllNames(i);
+                if (i % 10 === 0) {
+                    await restraso(5000)
+                }
+            }
+            firstLoading = true;
+        }
     },
     { immediate: true }
 );
