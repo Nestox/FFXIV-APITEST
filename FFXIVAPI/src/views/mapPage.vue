@@ -144,6 +144,25 @@ import { onBeforeMount, onMounted, ref } from 'vue';
     let mapImgUrl = ref("/m/default/default.00.jpg");
     let mapName = ref([])
     let mapRegionName = ref([])
+
+    let firstLoading = false;
+
+    // async function loadAllMaps(params) {
+    //     const respond = await fetch(`https://xivapi.com/map/${params}?columns=ID,MapFilename,PlaceName.Name,PlaceNameRegion.Name`);
+    //     const data = await respond.json();
+        
+    //     console.log(data)
+    //     data.Results.forEach(element => {
+    //         if (element.Name != "") {
+    //             mapImgUrl.value.push(element.MapFilename)
+    //             mapName.value.push(element.PlaceName.Name)
+    //             mapRegionName.value.push(element.PlaceNameRegion.Name)
+    //         }
+    //     })
+    //     console.log(ItemIDPersistent)
+    //     console.log(ItemNamePersistent)
+    // }
+
     
     async function getMapData(params) {
         const response = await fetch(`https://xivapi.com/map/${params}?columns=ID,MapFilename,PlaceName.Name,PlaceNameRegion.Name`);
@@ -155,10 +174,22 @@ import { onBeforeMount, onMounted, ref } from 'vue';
         // console.log(mapImgUrl)
     }
 
-    onBeforeMount(async () => {
-        
-    }) 
-    onMounted(async () => {
-        
-    })
+
+//     watch(
+//     () => actualPage.value,
+//     async () => {
+
+//         if(firstLoading == false){
+//             for (let i = 1; i < 5; i++) {
+//                 loadAllMaps(i);
+//                 if (i % 10 === 0) {
+//                     await restraso(5000)
+//                 }
+//             }
+//             firstLoading = true;
+//         }
+//     },
+//     { immediate: true }
+// );
+
 </script>

@@ -45,13 +45,13 @@
     import itemFrameComponent from '@/components/itemFrameComponent.vue';
 
     const ItemID = ref([]);
-    const ItemIDPersistent = ref([])
+    const ItemIDPersistent = ref([]);
     const ItemIcon = ref([]);
-    const ItemIconPersistent = ref([])
+    const ItemIconPersistent = ref([]);
     const ItemName = ref([]);
-    const ItemNamePersistent = ref([])
+    const ItemNamePersistent = ref([]);
     const ItemLink = ref([]);
-    const ItemLinkPersistent = ref([])
+    const ItemLinkPersistent = ref([]);
 
     const searchValue = ref('')
 
@@ -110,7 +110,12 @@
         // console.log(startSearching.value)
         // console.log(searchValue.value)
         if (searchValue.value == '') {
+            ItemID.value = []
+            ItemIcon.value = []
+            ItemName.value = []
+            ItemLink.value = []
             await getInfo(1);
+            startSearching.value = false;
         } else {
             ItemID.value = []
             ItemIcon.value = []
@@ -120,8 +125,9 @@
             // console.log(ItemIDPersistent.value.length)
             for (let i = 0; i < ItemIDPersistent.value.length; i++) 
             {
+
                 // console.log(ItemNamePersistent.value[i])
-                if (searchValue.value == ItemNamePersistent.value[i]) 
+                if (ItemNamePersistent.value[i].toLowerCase().includes(searchValue.value.toLowerCase())) 
                 // if (searchValue.value.match(ItemNamePersistent.value[i])) 
                 {
                     console.log("entra")

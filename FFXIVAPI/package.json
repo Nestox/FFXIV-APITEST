@@ -12,6 +12,7 @@
     "@popperjs/core": "^2.11.8",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",
+    "fuse.js": "^7.0.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },

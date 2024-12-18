@@ -11,12 +11,13 @@ import { RouterView } from 'vue-router'
 
   </div>
   <RouterView />
-  <div class="footer text-center p-3 text-white mt-5 bg-dark border-top">
-    <p>
-      This page is not affiliated with XIVAPI, Square-Enix, Final Fantasy 14 or the Lodestone in any way of form 
-    </p>
-    <p>
-      This is a personal proyect for learning how to consume APIs with Vue
-    </p>
-  </div>
+  
+    <div class="footer text-center p-3 text-white mt-5 bg-dark border-top">
+      <p>
+        This page is not affiliated with XIVAPI, Square-Enix, Final Fantasy 14 or the Lodestone in any way of form 
+      </p>
+      <p>
+        This is a personal proyect for learning how to consume APIs with Vue
+      </p>
+    </div>
 </template>
